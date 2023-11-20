@@ -1,0 +1,33 @@
+version: "1.0"
+
+services:
+    database:
+        image: mysql:8.0.33
+        environment:
+            MYSQL_ROOT_PASSWORD: StRoNg_PaSsWoRd
+            MYSQL_DATABASE: foodtotemcatalog
+            MYSQL_USER: user
+            MYSQL_PASSWORD: uSeRpAsSwOrD
+        ports:
+            - "3306:3306"
+        container_name: database
+        networks:
+            - foodtotem-network
+    api:
+        # image: leonardoavila98/food-totem-api:2.0.0
+        build:
+          context: .
+          dockerfile: Dockerfile
+        ports:
+            - "8080:80"
+        depends_on:
+            - database
+        networks:
+            - foodtotem-network
+        restart: always
+networks:
+    foodtotem-network:
+        driver: bridge
+
+    
+    
