@@ -6,8 +6,11 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 
 COPY ["Adapters/Driver/FoodTotem.Catalog.API/FoodTotem.Catalog.API.csproj", "Adapters/Driver/FoodTotem.Catalog.API/"]
-# COPY ["Adapters/Driven/*/*.csproj", "Adapters/Driven/"]
-# COPY ["Core/*/*.csproj", "Core/"]
+COPY ["Core/FoodTotem.Catalog.UseCase/FoodTotem.Catalog.UseCase.csproj", "Core/FoodTotem.Catalog.UseCase/"]
+COPY ["Core/FoodTotem.Catalog.Domain/FoodTotem.Catalog.Domain.csproj", "Core/FoodTotem.Catalog.Domain/"]
+COPY ["Core/FoodTotem.Domain.Core/FoodTotem.Domain.Core.csproj", "Core/FoodTotem.Domain.Core/"]
+COPY ["Core/FoodTotem.Data.Core/FoodTotem.Data.Core.csproj", "Core/FoodTotem.Data.Core/"]
+COPY ["Adapters/Driven/FoodTotem.Catalog.Gateways.MySQL/FoodTotem.Catalog.Gateways.MySQL.csproj", "Adapters/Driven/FoodTotem.Catalog.Gateways.MySQL/"]
 
 RUN dotnet restore "Adapters/Driver/FoodTotem.Catalog.API/FoodTotem.Catalog.API.csproj"
 COPY . .
