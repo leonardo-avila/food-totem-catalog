@@ -1,5 +1,6 @@
 # Food Totem Catalog
-
+[![build](https://github.com/leonardo-avila/food-totem-catalog/actions/workflows/build.yml/badge.svg)](https://github.com/leonardo-avila/food-totem-catalog/actions/workflows/build.yml)
+[![Deploy](https://github.com/leonardo-avila/food-totem-catalog/actions/workflows/deploy.yml/badge.svg)](https://github.com/leonardo-avila/food-totem-catalog/actions/workflows/deploy.yml)
 
 This is a repository to maintain the catalog of Food Totem project. It is a microservice that provides the catalog of products and their prices. It is a REST API, accessible through HTTP requests by the API Gateway configured on another repository.
 
