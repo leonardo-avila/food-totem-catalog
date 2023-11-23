@@ -3,7 +3,6 @@ using FoodTotem.Catalog.UseCase.InputViewModels;
 using FoodTotem.Domain.Core;
 using Microsoft.AspNetCore.Mvc;
 using FoodTotem.Catalog.UseCase.OutputViewModels;
-using Microsoft.AspNetCore.Authorization;
 
 namespace FoodTotem.Catalog.API.Controllers
 {
