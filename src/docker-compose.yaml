@@ -5,7 +5,7 @@ services:
         image: mysql:8.0.33
         environment:
             MYSQL_ROOT_PASSWORD: StRoNg_PaSsWoRd
-            MYSQL_DATABASE: foodtotemcatalog
+            MYSQL_DATABASE: foodtotem
             MYSQL_USER: user
             MYSQL_PASSWORD: uSeRpAsSwOrD
         ports:
@@ -13,7 +13,7 @@ services:
         container_name: database
         networks:
             - foodtotem-network
-    api:
+    catalog-api:
         # image: leonardoavila98/food-totem-api:2.0.0
         build:
           context: .

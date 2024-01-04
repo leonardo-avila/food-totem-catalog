@@ -24,7 +24,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
     public class CatalogContextFactory : IDesignTimeDbContextFactory<CatalogContext>
     {
-        private readonly string _connectionString = "Server=localhost;Port=3306;Database=foodtotemcatalog;Uid=user;Pwd=uSeRpAsSwOrD;";
+        private readonly string _connectionString = "Server=localhost;Port=3306;Database=foodtotem;Uid=user;Pwd=uSeRpAsSwOrD;";
 
         public CatalogContext CreateDbContext(string[] args)
         {
