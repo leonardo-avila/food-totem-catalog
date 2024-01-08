@@ -10,9 +10,9 @@ namespace FoodTotem.Catalog.Domain.Models
         public string Description { get; private set; }
         public string ImageUrl { get; private set; }
         public double Price { get; private set; }
-        public FoodCategoryEnum Category { get; private set; }
+        public FoodCategory Category { get; private set; }
 
-        public Food(string name, string description, string imageUrl, double price, FoodCategoryEnum category)
+        public Food(string name, string description, string imageUrl, double price, FoodCategory category)
         {
             Name = name;
             Description = description;
@@ -42,7 +42,7 @@ namespace FoodTotem.Catalog.Domain.Models
             Price = newPrice;
         }
 
-        public void UpdateCategory(FoodCategoryEnum newCategory)
+        public void UpdateCategory(FoodCategory newCategory)
         {
             Category = newCategory;
         }

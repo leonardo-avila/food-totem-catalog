@@ -1,6 +1,6 @@
 namespace FoodTotem.Catalog.Domain.Models.Enums
 {
-    public enum FoodCategoryEnum
+    public enum FoodCategory
     {
         Meal,
         SideDish,

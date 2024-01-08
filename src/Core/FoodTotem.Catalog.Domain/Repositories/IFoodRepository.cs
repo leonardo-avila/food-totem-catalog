@@ -6,6 +6,6 @@ namespace FoodTotem.Catalog.Domain.Repositories
 {
 	public interface IFoodRepository : IRepository<Food>
 	{
-		Task<IEnumerable<Food>> GetFoodsByCategory(FoodCategoryEnum category);
+		Task<IEnumerable<Food>> GetFoodsByCategory(FoodCategory category);
 	}
 }

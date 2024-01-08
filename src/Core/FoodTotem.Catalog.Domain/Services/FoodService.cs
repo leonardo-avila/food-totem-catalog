@@ -17,7 +17,7 @@ namespace FoodTotem.Catalog.Domain.Services
 
         public bool IsValidCategory(string category)
         {
-            return Enum.IsDefined(typeof(FoodCategoryEnum), category);
+            return Enum.IsDefined(typeof(FoodCategory), category);
         }
 
         public void ValidateFood(Food food)
