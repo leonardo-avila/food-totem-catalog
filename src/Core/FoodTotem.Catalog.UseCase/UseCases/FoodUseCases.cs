@@ -37,7 +37,7 @@ namespace FoodTotem.Catalog.UseCase.UseCases
                 foodViewModel.Description,
                 foodViewModel.ImageUrl,
                 foodViewModel.Price,
-                Enum.Parse<FoodCategoryEnum>(foodViewModel.Category)
+                Enum.Parse<FoodCategory>(foodViewModel.Category)
                 );
 
 				_foodService.ValidateFood(food);
@@ -63,7 +63,7 @@ namespace FoodTotem.Catalog.UseCase.UseCases
 		{
 			if (_foodService.IsValidCategory(category))
 			{
-				var foods = await _foodRepository.GetFoodsByCategory(Enum.Parse<FoodCategoryEnum>(category));
+				var foods = await _foodRepository.GetFoodsByCategory(Enum.Parse<FoodCategory>(category));
 
 				return ProduceFoodViewModelCollection(foods);
 			}
@@ -83,7 +83,7 @@ namespace FoodTotem.Catalog.UseCase.UseCases
                 food.UpdateDescription(foodViewModel.Description);
                 food.UpdateImageUrl(foodViewModel.ImageUrl);
                 food.UpdatePrice(foodViewModel.Price);
-                food.UpdateCategory(Enum.Parse<FoodCategoryEnum>(foodViewModel.Category));
+                food.UpdateCategory(Enum.Parse<FoodCategory>(foodViewModel.Category));
 
 				_foodService.ValidateFood(food);
 

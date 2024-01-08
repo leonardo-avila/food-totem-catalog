@@ -17,7 +17,7 @@ namespace FoodTotem.Catalog.Gateways.MySQL.Repositories
             DbSet = Db.Set<Food>();
         }
 
-        public async Task<IEnumerable<Food>> GetFoodsByCategory(FoodCategoryEnum category)
+        public async Task<IEnumerable<Food>> GetFoodsByCategory(FoodCategory category)
         {
             return await DbSet.Where(f => f.Category.Equals(category)).ToListAsync();
         }

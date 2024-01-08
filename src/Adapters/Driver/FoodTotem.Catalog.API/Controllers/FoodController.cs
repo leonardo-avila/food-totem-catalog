@@ -10,13 +10,10 @@ namespace FoodTotem.Catalog.API.Controllers
     [ApiController]
     public class FoodController : ControllerBase
     {
-        private readonly ILogger<FoodController> _logger;
         private readonly IFoodUseCases _foodUseCases;
 
-        public FoodController(ILogger<FoodController> logger,
-            IFoodUseCases foodUseCases)
+        public FoodController(IFoodUseCases foodUseCases)
         {
-            _logger = logger;
             _foodUseCases = foodUseCases;
         }
 
