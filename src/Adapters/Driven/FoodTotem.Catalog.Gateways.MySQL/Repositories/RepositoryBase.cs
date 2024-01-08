@@ -8,7 +8,7 @@ namespace FoodTotem.Catalog.Gateways.MySQL.Repositories
 	{
 		private readonly DbContext _dbContext;
 
-		public RepositoryBase(DbContext dbContext)
+		protected RepositoryBase(DbContext dbContext)
 		{
 			_dbContext = dbContext;
 		}
@@ -35,7 +35,11 @@ namespace FoodTotem.Catalog.Gateways.MySQL.Repositories
 			return await Commit();
 		}
 
-        public void Dispose() => _dbContext.Dispose();
+        public void Dispose()
+		{
+			_dbContext.Dispose();
+			GC.SuppressFinalize(this);
+		}
 
 		public virtual async Task<bool> Commit()
 		{
