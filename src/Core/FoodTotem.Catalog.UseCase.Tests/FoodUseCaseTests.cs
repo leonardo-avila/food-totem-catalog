@@ -234,6 +234,32 @@ public class FoodUseCaseTests
         await Assert.ThrowsExceptionAsync<DomainException>(() => _foodUseCases.UpdateFood(food.Id, foodInputViewModel), "Food should have a positive price.");
     }
 
+    [TestMethod, TestCategory("Catalog - Use Cases - Food")]
+    public async Task DeleteFood_WithValidId_ShouldSucceed()
+    {
+        // Arrange
+        var food = _foods.First();
+        MockGetFood();
+        MockDeleteFoodSuccess();
+
+        // Act
+        var result = await _foodUseCases.DeleteFood(food.Id);
+
+        // Assert
+        Assert.IsTrue(result);
+    }
+
+    [TestMethod, TestCategory("Catalog - Use Cases - Food")]
+    public async Task DeleteFood_WithInvalidId_ShouldFail()
+    {
+        // Arrange
+        var food = _foods.Last();
+        MockGetFood();
+
+        // Act and Assert
+        await Assert.ThrowsExceptionAsync<DomainException>(() => _foodUseCases.DeleteFood(food.Id), "No food found with this id.");
+    }
+
     private static IEnumerable<Food> MockFoods() {
         return new List<Food> {
             new("Pizza", "Pizza de calabresa", "https://www.google.com", 10, FoodCategory.Meal),
@@ -270,5 +296,9 @@ public class FoodUseCaseTests
 
     private void MockUpdateFoodSuccess() {
         _foodRepository.Update(Arg.Any<Food>()).ReturnsForAnyArgs(true);
+    }
+
+    private void MockDeleteFoodSuccess() {
+        _foodRepository.Delete(Arg.Any<Food>()).ReturnsForAnyArgs(true);
     }
 }

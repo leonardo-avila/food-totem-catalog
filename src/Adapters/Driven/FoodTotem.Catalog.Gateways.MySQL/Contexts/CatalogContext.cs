@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using FoodTotem.Catalog.Domain.Models;
 using FoodTotem.Catalog.Gateways.MySQL.Mappings;
 using Microsoft.EntityFrameworkCore;
 
 namespace FoodTotem.Catalog.Gateways.MySQL.Contexts
 {
+    [ExcludeFromCodeCoverage]
     public class CatalogContext : DbContext
     {
         public CatalogContext(DbContextOptions<CatalogContext> options) : base(options) 
