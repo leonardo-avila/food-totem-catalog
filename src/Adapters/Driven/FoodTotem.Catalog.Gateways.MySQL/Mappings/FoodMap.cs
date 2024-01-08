@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using FoodTotem.Catalog.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FoodTotem.Catalog.Gateways.MySQL.Mappings
 {
+    [ExcludeFromCodeCoverage]
     public class FoodMap : IEntityTypeConfiguration<Food>
     {
         public void Configure(EntityTypeBuilder<Food> builder)

@@ -2,6 +2,7 @@ using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using FoodTotem.Catalog.Gateways.MySQL.Contexts;
+using FoodTotem.Catalog.API.Setup;
 
 var builder = WebApplication.CreateBuilder(args);
 
