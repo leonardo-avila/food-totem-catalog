@@ -89,6 +89,32 @@ resource "aws_ecs_task_definition" "food-totem-catalog-task" {
   ])
 }
 
+resource "aws_lb_target_group" "catalog-api-tg" {
+  name     = "catalog-api"
+  port     = 8080
+  protocol = "TCP"
+  vpc_id   = data.aws_vpc.default.id
+  target_type = "ip"
+}
+
+resource "aws_lb" "catalog-api-lb" {
+  name               = "catalog-api"
+  internal           = true
+  load_balancer_type = "network"
+  subnets            = data.aws_subnets.default.ids
+}
+
+resource "aws_lb_listener" "catalog-api-lbl" {
+  load_balancer_arn = aws_lb.catalog-api-lb.arn
+  port              = 8080
+  protocol          = "TCP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.catalog-api-tg.arn
+  }
+}
+
 resource "aws_ecs_service" "food-totem-catalog-service" {
   name            = "food-totem-catalog-service"
   cluster         = "food-totem-ecs"
@@ -100,6 +126,12 @@ resource "aws_ecs_service" "food-totem-catalog-service" {
     security_groups  = [data.aws_security_group.default.id]
     subnets = data.aws_subnets.default.ids
     assign_public_ip = true
+  }
+
+  load_balancer {
+    target_group_arn = aws_lb_target_group.catalog-api-tg.arn
+    container_name   = "food-totem-catalog"
+    container_port   = 8080
   }
 }
 
