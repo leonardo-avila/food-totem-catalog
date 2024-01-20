@@ -411,3 +411,8 @@ TestResult.html
 
 # SpecFlow user id
 userid
+
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.terraform/
