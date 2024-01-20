@@ -92,22 +92,32 @@ resource "aws_ecs_task_definition" "food-totem-catalog-task" {
 resource "aws_lb_target_group" "catalog-api-tg" {
   name     = "catalog-api"
   port     = 8080
-  protocol = "TCP"
+  protocol = "HTTP"
   vpc_id   = data.aws_vpc.default.id
   target_type = "ip"
+
+  health_check {
+    enabled = true
+    interval = 300
+    path = "/health-check"
+    protocol = "HTTP"
+    timeout = 60
+    healthy_threshold = 3
+    unhealthy_threshold = 3
+  }
 }
 
 resource "aws_lb" "catalog-api-lb" {
   name               = "catalog-api"
   internal           = true
-  load_balancer_type = "network"
+  load_balancer_type = "application"
   subnets            = data.aws_subnets.default.ids
 }
 
 resource "aws_lb_listener" "catalog-api-lbl" {
   load_balancer_arn = aws_lb.catalog-api-lb.arn
-  port              = 8080
-  protocol          = "TCP"
+  port              = 80
+  protocol          = "HTTP"
 
   default_action {
     type             = "forward"
@@ -133,6 +143,8 @@ resource "aws_ecs_service" "food-totem-catalog-service" {
     container_name   = "food-totem-catalog"
     container_port   = 8080
   }
+
+  health_check_grace_period_seconds = 120
 }
 
 resource "aws_cloudwatch_log_group" "food-totem-catalog-logs" {
