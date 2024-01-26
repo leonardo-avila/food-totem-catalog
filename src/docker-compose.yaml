@@ -1,7 +1,7 @@
 version: "1.0"
 
 services:
-    database:
+    catalog-database:
         image: mysql:8.0.33
         environment:
             MYSQL_ROOT_PASSWORD: StRoNg_PaSsWoRd
@@ -10,18 +10,19 @@ services:
             MYSQL_PASSWORD: uSeRpAsSwOrD
         ports:
             - "3306:3306"
-        container_name: database
+        container_name: catalog-database
         networks:
             - foodtotem-network
     catalog-api:
-        # image: leonardoavila98/food-totem-api:2.0.0
         build:
           context: .
           dockerfile: Dockerfile
         ports:
-            - "8080:80"
+            - "3003:80"
+        environment:
+            ConnectionStrings__DefaultConnection: "Server=catalog-database;Port=3306;Database=foodtotem;Uid=user;Pwd=uSeRpAsSwOrD"
         depends_on:
-            - database
+            - catalog-database
         networks:
             - foodtotem-network
         restart: always
