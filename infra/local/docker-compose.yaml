@@ -9,13 +9,13 @@ services:
             MYSQL_USER: user
             MYSQL_PASSWORD: uSeRpAsSwOrD
         ports:
-            - "3306:3306"
+            - "33061:3306"
         container_name: catalog-database
         networks:
             - foodtotem-network
     catalog-api:
         build:
-          context: .
+          context: ../../src
           dockerfile: Dockerfile
         ports:
             - "3003:80"
