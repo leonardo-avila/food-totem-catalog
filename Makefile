@@ -15,8 +15,8 @@ full-clean:
 	dotnet clean
 
 run-services:
-	cd src; docker-compose build --no-cache;
-	cd src; docker-compose up -d
+	cd infra/local; docker-compose build --no-cache;
+	cd infra/local; docker-compose up -d
 
 run-database:
 	cd infra/local;	docker-compose up -d catalog-database
@@ -25,4 +25,4 @@ run-api:
 	cd infra/local; docker-compose up -d catalog-api
 
 stop-services:
-	cd src; docker-compose down
+	cd infra/local; docker-compose down
